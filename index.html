@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Aastha, From Tanmay ❤️</title>
+    <style>
+        :root {
+            --primary-pink: #ff4d6d;
+            --soft-pink: #fff0f3;
+            --deep-red: #c9184a;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: var(--soft-pink);
+            font-family: 'Dancing Script', 'Segoe UI', cursive, sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(255, 77, 109, 0.2);
+            max-width: 450px;
+            width: 85%;
+            z-index: 10;
+            border: 2px solid #ffb3c1;
+        }
+
+        h1 { color: var(--deep-red); font-size: 2.2rem; margin-bottom: 10px; }
+        p.subtitle { color: #590d22; font-style: italic; margin-bottom: 20px; font-size: 1.2rem; }
+        .main-gif { width: 180px; border-radius: 15px; margin-bottom: 20px; }
+
+        .counter-box {
+            background: var(--soft-pink);
+            padding: 10px;
+            border-radius: 15px;
+            margin: 15px 0;
+            color: var(--deep-red);
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            margin-top: 30px;
+            height: 60px;
+        }
+
+        button {
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        #yesBtn { background-color: var(--primary-pink); color: white; box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4); }
+        #noBtn { background-color: #800f2f; color: white; position: relative; }
+
+        #successSection { display: none; animation: fadeIn 1s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .heart-particle { position: absolute; pointer-events: none; animation: floatUp 4s linear forwards; }
+        @keyframes floatUp { to { transform: translateY(-100vh) rotate(360deg); opacity: 0; } }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="card">
+        <div id="questionSection">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHIyc3B5MmtpZzR4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4JnVwPTE/c76IJLuffmCqKF3XYW/giphy.gif" class="main-gif" alt="Cute Love">
+            <h1>Hey Aastha... ❤️</h1>
+            <p class="subtitle">Tanmay has a very important question for you.</p>
+            
+            <div class="counter-box">
+                It's been <span id="dayCount">0</span> beautiful days together...
+            </div>
+
+            <h1>Will you be my Valentine?</h1>
+            
+            <div class="btn-container">
+                <button id="yesBtn">YES! 😍</button>
+                <button id="noBtn">No 🥺</button>
+            </div>
+        </div>
+
+        <div id="successSection">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGthM3N4N3R4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4JnVwPTE/L4lvBpHnJvD-A91XfI/giphy.gif" class="main-gif">
+            <h1>I knew it! ❤️</h1>
+            <p style="font-size: 1.8rem; color: var(--deep-red); margin: 5px 0;">Aastha & Tanmay</p>
+            <p>Started: Dec 30, 2024</p>
+            <p>I love you more than words can say! 🥰</p>
+        </div>
+    </div>
+
+    <script>
+        // Calculate Days Together
+        const startDate = new Date('2024-12-30');
+        const today = new Date();
+        const timeDiff = today - startDate;
+        const daysTogether = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+        document.getElementById('dayCount').innerText = daysTogether;
+
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const questionSection = document.getElementById('questionSection');
+        const successSection = document.getElementById('successSection');
+
+        noBtn.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = `${x}px`;
+            noBtn.style.top = `${y}px`;
+        });
+
+        yesBtn.addEventListener('click', () => {
+            questionSection.style.display = 'none';
+            successSection.style.display = 'block';
+            startHearts();
+        });
+
+        function startHearts() {
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('heart-particle');
+                heart.innerHTML = ['❤️', '💖', '💝', '💕'][Math.floor(Math.random() * 4)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = '100vh';
+                heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 4000);
+            }, 150);
+        }
+    </script>
+</body>
+</html>
